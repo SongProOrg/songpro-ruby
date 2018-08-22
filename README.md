@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install Song Pro
+    $ gem install song_pro
 
 ## Usage
 
@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/Song Pro.
+Bug reports and pull requests are welcome on GitHub at https://github.com/spilth/song_pro.
 
 ## License
 
