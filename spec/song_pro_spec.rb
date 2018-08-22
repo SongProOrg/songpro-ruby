@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SongPro do
   context 'attributes' do
     it 'parses title attributes' do

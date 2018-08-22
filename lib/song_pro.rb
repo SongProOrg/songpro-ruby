@@ -24,25 +24,26 @@ module SongPro
           song.title = value
         when 'artist'
           song.artist = value
+        else
+          puts "WARNING: Unknown attribute '#{key}'"
         end
       elsif text.start_with?('#')
         matches = /#\s*([^$]*)/.match(text)
         name = matches[1].strip
-        section = Section.new(name: name)
-        song.sections << section
+        current_section = Section.new(name: name)
+        song.sections << current_section
       else
         unless text == ''
           if current_section.nil?
-            section = Section.new(name: '')
-            current_section = section
-            song.sections << section
+            current_section = Section.new(name: '')
+            song.sections << current_section
           end
 
           line = Line.new
           part = Part.new
           part.lyric = text
           line.parts << part
-          section.lines << line
+          current_section.lines << line
         end
       end
     end
