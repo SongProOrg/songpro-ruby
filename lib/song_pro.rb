@@ -7,6 +7,10 @@ require 'song_pro/line'
 require 'song_pro/part'
 
 module SongPro
+  SECTION_REGEX = /#\s*([^$]*)/
+  ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
+  CHORDS_AND_LYRICS_REGEX = /(\[\w+\])?([\w\s'_\-"]*)/i
+
   def self.parse(lines)
     song = Song.new
     current_section = nil
@@ -24,10 +28,8 @@ module SongPro
     song
   end
 
-  private
-
   def self.process_section(song, text)
-    matches = /#\s*([^$]*)/.match(text)
+    matches = SECTION_REGEX.match(text)
     name = matches[1].strip
     current_section = Section.new(name: name)
     song.sections << current_section
@@ -36,7 +38,7 @@ module SongPro
   end
 
   def self.process_attribute(song, text)
-    matches = /@(\w*)=([^%]*)/.match(text)
+    matches = ATTRIBUTE_REGEX.match(text)
     key = matches[1]
     value = matches[2].strip
 
@@ -60,16 +62,15 @@ module SongPro
 
     line = Line.new
 
-    captures = text.scan(/(\[\w+\])?([\w\s'_\-"]*)/i).flatten
+    captures = text.scan(CHORDS_AND_LYRICS_REGEX).flatten
 
     captures.each_slice(2) do |pair|
       part = Part.new
       chord = pair[0]&.strip || ''
-      part.chord = chord.gsub('[','').gsub(']','')
+      part.chord = chord.delete('[').delete(']')
       part.lyric = pair[1]&.strip || ''
-      unless part.chord == '' and part.lyric == ''
-        line.parts << part
-      end
+
+      line.parts << part unless (part.chord == '') && (part.lyric == '')
     end
     current_section.lines << line
   end
