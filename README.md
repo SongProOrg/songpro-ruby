@@ -1,8 +1,10 @@
 # SongPro [![Build Status](https://travis-ci.org/spilth/song_pro.svg?branch=master)](https://travis-ci.org/spilth/song_pro)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Song Pro`. To experiment with that code, run `bin/console` for an interactive prompt.
+SongPro is a text format for transcribing songs.
+ 
+This project is a Ruby Gem that converts the song into a data model that can then be converted into various output formats such as text or HTML.
 
-TODO: Delete this and the text above, and describe your gem
+It is heavily inspired by [ChordPro](https://www.chordpro.org/).
 
 ## Installation
 
@@ -22,7 +24,76 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Given then file `bad-moon-rising.sng` with the following contents:
+
+```
+@title=Bad Moon Rising
+@artist=Cleedence Clearwater Revival
+
+# Intro
+
+[D][A][G][D]
+
+# Verse 1
+
+[D]I see a [A]bad [G]moon a-[D]rising
+[D]I see [A]trouble [G]on the [D]way
+[D]I see [A]earth-[G]quakes and [D]lightnin'
+[D]I see [A]bad [G]times to-[D]day
+```
+
+You can then parse the file to create a `Song` object:
+
+```ruby
+require 'song_pro'
+
+text = File.read('bad-moon-rising.sng')
+song = SongPro.parse(text)
+
+puts song.title
+# Bad Moon Rising
+
+puts song.artist
+# Creedence Clearwater Revival 
+
+puts song.sections[1].title
+# Verse 1
+
+```
+## SongPro Format
+
+- Attributes are declared using: `@key=value`
+- Sections are declared using: `# Section Name`
+- Chords are declared using: `[Xy#]`
+
+```
+@title=Bad Moon Rising
+@artist=Cleedence Clearwater Revival
+
+# Intro
+
+[D][A][G][D]
+
+# Verse 1
+
+[D]I see a [A]bad [G]moon a-[D]rising
+[D]I see [A]trouble [G]on the [D]way
+[D]I see [A]earth-[G]quakes and [D]lightnin'
+[D]I see [A]bad [G]times to-[D]day
+```
+
+## Song Object
+
+- a **Song** can have a Title
+- a **Song** can have an Artist
+- a **Song** has zero or more **Sections**
+- a **Section** has zero or more **Lines**
+- a **Line** has one or more **Parts**
+- a **Part** has a **Chord** and **Lyric**
+- a **Chord** is the textual representation of a single chord
+  - this may be empty
+- a **Lyric** is the textual representation of lyrics
+  - this may be empty
 
 ## Development
 
@@ -32,7 +103,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/spilth/song_pro.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/spilth/song_pro>.
 
 ## License
 
