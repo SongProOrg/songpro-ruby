@@ -54,4 +54,53 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines[0].parts[0].lyric).to eq 'I see a bad moon a-rising'
     end
   end
+
+  context 'chords' do
+    it 'parses chords' do
+      song = SongPro.parse('[D] [A] [G] [D]')
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines.size).to eq 1
+      expect(song.sections[0].lines[0].parts.size).to eq 4
+      expect(song.sections[0].lines[0].parts[0].chord).to eq 'D'
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq ''
+      expect(song.sections[0].lines[0].parts[1].chord).to eq 'A'
+      expect(song.sections[0].lines[0].parts[1].lyric).to eq ''
+      expect(song.sections[0].lines[0].parts[2].chord).to eq 'G'
+      expect(song.sections[0].lines[0].parts[2].lyric).to eq ''
+      expect(song.sections[0].lines[0].parts[3].chord).to eq 'D'
+      expect(song.sections[0].lines[0].parts[3].lyric).to eq ''
+    end
+  end
+
+  context 'chords and lyrics' do
+    it 'parses chords and lyrics' do
+      song = SongPro.parse("[G]Don't go 'round tonight")
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines.size).to eq 1
+      expect(song.sections[0].lines[0].parts.size).to eq 1
+      expect(song.sections[0].lines[0].parts[0].chord).to eq 'G'
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq "Don't go 'round tonight"
+    end
+
+    it 'parses lyrics before chords' do
+      song = SongPro.parse("It's [D]bound to take your life")
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines.size).to eq 1
+      expect(song.sections[0].lines[0].parts.size).to eq 2
+      expect(song.sections[0].lines[0].parts[0].chord).to eq ''
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq "It's"
+      expect(song.sections[0].lines[0].parts[1].chord).to eq 'D'
+      expect(song.sections[0].lines[0].parts[1].lyric).to eq 'bound to take your life'
+    end
+  end
+
+  context 'full song' do
+    it 'parses the whole song' do
+      bmr = File.read('spec/fixtures/bad-moon-rising.sng')
+      song = SongPro.parse(bmr)
+      expect(song.title).to eq 'Bad Moon Rising'
+      expect(song.artist).to eq 'Creedence Clearwater Revival'
+      expect(song.sections.size).to eq 8
+    end
+  end
 end
