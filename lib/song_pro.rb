@@ -9,7 +9,7 @@ require 'song_pro/part'
 module SongPro
   SECTION_REGEX = /#\s*([^$]*)/
   ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
-  CHORDS_AND_LYRICS_REGEX = /(\[\w+\])?([\w\s'_\-"]*)/i
+  CHORDS_AND_LYRICS_REGEX = /(\[[\w#b\/]+\])?([\w\s'_\-"]*)/i
 
   def self.parse(lines)
     song = Song.new

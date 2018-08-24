@@ -57,17 +57,17 @@ RSpec.describe SongPro do
 
   context 'chords' do
     it 'parses chords' do
-      song = SongPro.parse('[D] [A] [G] [D]')
+      song = SongPro.parse('[D] [D/F#] [C] [A7]')
       expect(song.sections.size).to eq 1
       expect(song.sections[0].lines.size).to eq 1
       expect(song.sections[0].lines[0].parts.size).to eq 4
       expect(song.sections[0].lines[0].parts[0].chord).to eq 'D'
       expect(song.sections[0].lines[0].parts[0].lyric).to eq ''
-      expect(song.sections[0].lines[0].parts[1].chord).to eq 'A'
+      expect(song.sections[0].lines[0].parts[1].chord).to eq 'D/F#'
       expect(song.sections[0].lines[0].parts[1].lyric).to eq ''
-      expect(song.sections[0].lines[0].parts[2].chord).to eq 'G'
+      expect(song.sections[0].lines[0].parts[2].chord).to eq 'C'
       expect(song.sections[0].lines[0].parts[2].lyric).to eq ''
-      expect(song.sections[0].lines[0].parts[3].chord).to eq 'D'
+      expect(song.sections[0].lines[0].parts[3].chord).to eq 'A7'
       expect(song.sections[0].lines[0].parts[3].lyric).to eq ''
     end
   end
