@@ -72,6 +72,7 @@ module SongPro
 
       line.parts << part unless (part.chord == '') && (part.lyric == '')
     end
+
     current_section.lines << line
   end
 end
