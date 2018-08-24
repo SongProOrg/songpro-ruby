@@ -53,6 +53,15 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines[0].parts.size).to eq 1
       expect(song.sections[0].lines[0].parts[0].lyric).to eq 'I see a bad moon a-rising'
     end
+
+    it 'handles parens in lyics' do
+      song = SongPro.parse('singing something (something else)')
+
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines.size).to eq 1
+      expect(song.sections[0].lines[0].parts.size).to eq 1
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq 'singing something (something else)'
+    end
   end
 
   context 'chords' do
