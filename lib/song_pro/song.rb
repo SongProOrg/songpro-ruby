@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'markaby'
+
 class Song
   attr_accessor :title, :artist, :capo, :sections
 
@@ -8,33 +10,37 @@ class Song
   end
 
   def to_html
-    html = '<h1 class="title">' + @title + '</h1>' +
-        '<h2 class="artist">' + @artist + '</h2>'
+    mab = Markaby::Builder.new(song: self)
+    mab.div.song do
+      h1.title song.title
+      h2.artist song.artist
 
-    html += '<dl class="information"><dt>Capo</dt><dd>' + capo + '</dd></dl>' unless capo.nil?
-
-    @sections.each do |section|
-      html += '<div class="section">' +
-          '<div class="name">' + section.name + '</div>'
-
-      html += '<div class="lines">'
-      section.lines.each do |line|
-        html += '<div class="line">'
-
-        line.parts.each do |part|
-          html += '<div class="part">' +
-              '<div class="chord">' + part.chord + '</div>' +
-              '<div class="lyric">' + part.lyric + '</div>' +
-              '</div>'
+      unless song.capo.nil?
+        dl.information do
+          dt 'Capo'
+          dd song.capo
         end
-
-        html += '</div>'
       end
-      html += '</div>'
 
-      html += '</div>'
+      song.sections.each do |section|
+        div.section do
+          div.name section.name
+          div.lines do
+            section.lines.each do |line|
+              div.line do
+                line.parts.each do |part|
+                  div.part do
+                    div.chord part.chord
+                    div.lyric part.lyric
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
     end
 
-    html
+    mab.to_s
   end
 end
