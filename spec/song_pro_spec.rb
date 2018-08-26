@@ -14,6 +14,12 @@ RSpec.describe SongPro do
       expect(song.artist).to eq('Creedence Clearwater Revival')
     end
 
+    it 'parses capo attributes' do
+      song = SongPro.parse('@capo=1')
+
+      expect(song.capo).to eq('1')
+    end
+
     it 'parses multiple attributes' do
       song = SongPro.parse('
 @title=Bad Moon Rising
@@ -109,6 +115,7 @@ RSpec.describe SongPro do
       song = SongPro.parse(bmr)
       expect(song.title).to eq 'Bad Moon Rising'
       expect(song.artist).to eq 'Creedence Clearwater Revival'
+      expect(song.capo).to eq '1'
       expect(song.sections.size).to eq 8
     end
   end

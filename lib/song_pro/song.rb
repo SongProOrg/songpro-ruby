@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Song
-  attr_accessor :title, :artist, :sections
+  attr_accessor :title, :artist, :capo, :sections
 
   def initialize
     @sections = []
@@ -10,6 +10,8 @@ class Song
   def to_html
     html = '<h1 class="title">' + @title + '</h1>' +
         '<h2 class="artist">' + @artist + '</h2>'
+
+    html += '<dl class="information"><dt>Capo</dt><dd>1</dd></dl>' unless capo.nil?
 
     @sections.each do |section|
       html += '<div class="section">' +

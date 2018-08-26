@@ -47,6 +47,8 @@ module SongPro
       song.title = value
     when 'artist'
       song.artist = value
+    when 'capo'
+      song.capo = value
     else
       puts "WARNING: Unknown attribute '#{key}'"
     end
