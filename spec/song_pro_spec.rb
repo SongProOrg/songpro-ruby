@@ -52,12 +52,12 @@ RSpec.describe SongPro do
 
   context 'lyrics' do
     it 'parses lyrics' do
-      song = SongPro.parse('I see a bad moon a-rising')
+      song = SongPro.parse("I don't see! a bad, moon a-rising. (a-rising)")
 
       expect(song.sections.size).to eq 1
       expect(song.sections[0].lines.size).to eq 1
       expect(song.sections[0].lines[0].parts.size).to eq 1
-      expect(song.sections[0].lines[0].parts[0].lyric).to eq 'I see a bad moon a-rising'
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq "I don't see! a bad, moon a-rising. (a-rising)"
     end
 
     it 'handles parens in lyics' do
