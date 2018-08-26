@@ -11,7 +11,7 @@ class Song
     html = '<h1 class="title">' + @title + '</h1>' +
         '<h2 class="artist">' + @artist + '</h2>'
 
-    html += '<dl class="information"><dt>Capo</dt><dd>1</dd></dl>' unless capo.nil?
+    html += '<dl class="information"><dt>Capo</dt><dd>' + capo + '</dd></dl>' unless capo.nil?
 
     @sections.each do |section|
       html += '<div class="section">' +
