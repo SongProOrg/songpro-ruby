@@ -24,6 +24,10 @@ class Song
       h2.artist song.artist if song.artist
 
       dl.information do
+        if song.tuning
+          dt 'Tuning'
+          dd song.tuning
+        end
         if song.capo
           dt 'Capo'
           dd song.capo
