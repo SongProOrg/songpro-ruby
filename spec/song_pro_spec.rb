@@ -2,32 +2,26 @@
 
 RSpec.describe SongPro do
   context 'attributes' do
-    it 'parses title attributes' do
-      song = SongPro.parse('@title=Bad Moon Rising')
-
-      expect(song.title).to eq('Bad Moon Rising')
-    end
-
-    it 'parses artists attributes' do
-      song = SongPro.parse('@artist=Creedence Clearwater Revival')
-
-      expect(song.artist).to eq('Creedence Clearwater Revival')
-    end
-
-    it 'parses capo attributes' do
-      song = SongPro.parse('@capo=1')
-
-      expect(song.capo).to eq('1')
-    end
-
-    it 'parses multiple attributes' do
+    it 'parses attributes' do
       song = SongPro.parse('
 @title=Bad Moon Rising
 @artist=Creedence Clearwater Revival
+@capo=1st Fret
+@key=C# Minor
+@tempo=120
+@year=1975
+@album=Foo Bar Baz
+@tuning=Eb Standard
 ')
 
       expect(song.title).to eq('Bad Moon Rising')
       expect(song.artist).to eq('Creedence Clearwater Revival')
+      expect(song.capo).to eq('1st Fret')
+      expect(song.key).to eq('C# Minor')
+      expect(song.tempo).to eq('120')
+      expect(song.year).to eq('1975')
+      expect(song.album).to eq('Foo Bar Baz')
+      expect(song.tuning).to eq('Eb Standard')
     end
   end
 

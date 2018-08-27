@@ -3,7 +3,15 @@
 require 'markaby'
 
 class Song
-  attr_accessor :title, :artist, :capo, :sections
+  attr_accessor :title,
+                :artist,
+                :capo,
+                :key,
+                :tempo,
+                :year,
+                :album,
+                :tuning,
+                :sections
 
   def initialize
     @sections = []
@@ -12,13 +20,29 @@ class Song
   def to_html
     mab = Markaby::Builder.new(song: self)
     mab.div.song do
-      h1.title song.title
-      h2.artist song.artist
+      h1.title song.title if song.title
+      h2.artist song.artist if song.artist
 
-      unless song.capo.nil?
-        dl.information do
+      dl.information do
+        if song.capo
           dt 'Capo'
           dd song.capo
+        end
+        if song.key
+          dt 'Key'
+          dd song.key
+        end
+        if song.tempo
+          dt 'Tempo'
+          dd song.tempo
+        end
+        if song.year
+          dt 'Year'
+          dd song.year
+        end
+        if song.album
+          dt 'Album'
+          dd song.album
         end
       end
 

@@ -42,13 +42,8 @@ module SongPro
     key = matches[1]
     value = matches[2].strip
 
-    case key
-    when 'title'
-      song.title = value
-    when 'artist'
-      song.artist = value
-    when 'capo'
-      song.capo = value
+    if song.respond_to?("#{key}=".to_sym)
+      song.send("#{key}=", value)
     else
       puts "WARNING: Unknown attribute '#{key}'"
     end
