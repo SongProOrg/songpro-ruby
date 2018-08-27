@@ -25,28 +25,28 @@ class Song
 
       dl.information do
         if song.tuning
-          dt 'Tuning'
-          dd song.tuning
+          dt.tuning 'Tuning'
+          dd.tuning song.tuning
         end
         if song.capo
-          dt 'Capo'
-          dd song.capo
+          dt.capo 'Capo'
+          dd.capo song.capo
         end
         if song.key
-          dt 'Key'
-          dd song.key
+          dt.key 'Key'
+          dd.key song.key
         end
         if song.tempo
-          dt 'Tempo'
-          dd song.tempo
+          dt.tempo 'Tempo'
+          dd.tempo song.tempo
         end
         if song.year
-          dt 'Year'
-          dd song.year
+          dt.year 'Year'
+          dd.year song.year
         end
         if song.album
-          dt 'Album'
-          dd song.album
+          dt.album 'Album'
+          dd.album song.album
         end
       end
 
