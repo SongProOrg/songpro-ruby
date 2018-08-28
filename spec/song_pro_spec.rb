@@ -103,6 +103,22 @@ RSpec.describe SongPro do
     end
   end
 
+  context 'tablature' do
+    it 'parses tablature' do
+      song = SongPro.parse('
+# Riff
+
+|-3---5-|
+|---4---|
+')
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines[0].tablature?).to eq true
+      expect(song.sections[0].lines[0].tablature).to eq '|-3---5-|'
+      expect(song.sections[0].lines[1].tablature?).to eq true
+      expect(song.sections[0].lines[1].tablature).to eq '|---4---|'
+    end
+  end
+
   context 'full song' do
     it 'parses the whole song' do
       bmr = File.read('spec/fixtures/bad-moon-rising.sng')
@@ -110,7 +126,7 @@ RSpec.describe SongPro do
       expect(song.title).to eq 'Bad Moon Rising'
       expect(song.artist).to eq 'Creedence Clearwater Revival'
       expect(song.capo).to eq '1'
-      expect(song.sections.size).to eq 8
+      expect(song.sections.size).to eq 9
     end
   end
 end

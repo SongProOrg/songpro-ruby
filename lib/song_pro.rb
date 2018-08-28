@@ -59,7 +59,10 @@ module SongPro
 
     line = Line.new
 
-    captures = text.scan(CHORDS_AND_LYRICS_REGEX).flatten
+    if text.start_with?('|')
+      line.tablature = text
+    else
+      captures = text.scan(CHORDS_AND_LYRICS_REGEX).flatten
 
     captures.each_slice(2) do |pair|
       part = Part.new
@@ -67,7 +70,8 @@ module SongPro
       part.chord = chord.delete('[').delete(']')
       part.lyric = pair[1]&.strip || ''
 
-      line.parts << part unless (part.chord == '') && (part.lyric == '')
+        line.parts << part unless (part.chord == '') && (part.lyric == '')
+      end
     end
 
     current_section.lines << line
