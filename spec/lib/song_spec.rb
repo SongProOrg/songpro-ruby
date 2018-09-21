@@ -10,4 +10,13 @@ RSpec.describe Song do
       expect(html).to include outfile
     end
   end
+
+  context '#chords' do
+    it 'returns an sorted array of all chords in the song' do
+      infile = File.read('spec/fixtures/bad-moon-rising.sng')
+      song = SongPro.parse(infile)
+
+      expect(song.chords).to eq %w[A A7 D G]
+    end
+  end
 end

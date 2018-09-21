@@ -77,4 +77,12 @@ class Song
 
     mab.to_s
   end
+
+  def chords
+    sections.collect do |section|
+      section.lines.collect do |lines|
+        lines.parts.collect(&:chord)
+      end
+    end.flatten.sort.uniq.reject(&:empty?)
+  end
 end
