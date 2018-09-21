@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Song do
   context '#to_html' do
     it 'generates divs' do

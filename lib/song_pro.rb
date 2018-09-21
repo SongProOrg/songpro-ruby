@@ -7,7 +7,7 @@ require 'song_pro/line'
 require 'song_pro/part'
 
 module SongPro
-  SECTION_REGEX = /#\s*([^$]*)/
+  SECTION_REGEX = /#\s*([^\[]*)(\[(.*)\])?/
   ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
   CHORDS_AND_LYRICS_REGEX = /(\[[\w#b\/]+\])?([\w\s',.!\(\)_\-"]*)/i
 
@@ -31,7 +31,8 @@ module SongPro
   def self.process_section(song, text)
     matches = SECTION_REGEX.match(text)
     name = matches[1].strip
-    current_section = Section.new(name: name)
+    reference = matches[3].strip if matches[3]
+    current_section = Section.new(name: name, reference: reference)
     song.sections << current_section
 
     current_section

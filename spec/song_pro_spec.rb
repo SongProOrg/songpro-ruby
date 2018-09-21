@@ -42,6 +42,19 @@ RSpec.describe SongPro do
       expect(song.sections[0].name).to eq 'Verse 1'
       expect(song.sections[1].name).to eq 'Chorus'
     end
+
+    context 'section references' do
+      it 'captures sections that reference/repeats other sections' do
+        song = SongPro.parse('
+# Chorus 1
+# Chorus 2 [Chorus 1]
+')
+        expect(song.sections.size).to eq 2
+        expect(song.sections[0].name).to eq 'Chorus 1'
+        expect(song.sections[1].name).to eq 'Chorus 2'
+        expect(song.sections[1].reference).to eq 'Chorus 1'
+      end
+    end
   end
 
   context 'lyrics' do
