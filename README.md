@@ -1,10 +1,8 @@
 # SongPro [![Build Status](https://travis-ci.org/spilth/song_pro.svg?branch=master)](https://travis-ci.org/spilth/song_pro)
 
-SongPro is a text format for transcribing songs.
+[SongPro](https://songpro.org) is a text format for transcribing songs.
  
-This project is a Ruby Gem that converts the song into a data model that can then be converted into various output formats such as text or HTML.
-
-It is heavily inspired by [ChordPro](https://www.chordpro.org/).
+This project is a Ruby Gem that converts the song into a Song data model which can then be converted into various output formats such as text or HTML.
 
 ## Installation
 
@@ -60,40 +58,6 @@ puts song.sections[1].title
 # Verse 1
 
 ```
-## SongPro Format
-
-- Attributes are declared using: `@key=value`
-- Sections are declared using: `# Section Name`
-- Chords are declared using: `[Xy#]`
-
-```
-@title=Bad Moon Rising
-@artist=Cleedence Clearwater Revival
-
-# Intro
-
-[D][A][G][D]
-
-# Verse 1
-
-[D]I see a [A]bad [G]moon a-[D]rising
-[D]I see [A]trouble [G]on the [D]way
-[D]I see [A]earth-[G]quakes and [D]lightnin'
-[D]I see [A]bad [G]times to-[D]day
-```
-
-## Song Object
-
-- a **Song** can have a Title
-- a **Song** can have an Artist
-- a **Song** has zero or more **Sections**
-- a **Section** has zero or more **Lines**
-- a **Line** has one or more **Parts**
-- a **Part** has a **Chord** and **Lyric**
-- a **Chord** is the textual representation of a single chord
-  - this may be empty
-- a **Lyric** is the textual representation of lyrics
-  - this may be empty
 
 ## Development
 
