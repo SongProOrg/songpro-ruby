@@ -1,4 +1,4 @@
-# SongPro [![Build Status](https://travis-ci.org/spilth/song_pro.svg?branch=master)](https://travis-ci.org/spilth/song_pro)
+# SongPro for Ruby [![Build Status](https://travis-ci.org/spilth/song_pro.svg?branch=master)](https://travis-ci.org/spilth/song_pro)
 
 [SongPro](https://songpro.org) is a text format for transcribing songs.
  
