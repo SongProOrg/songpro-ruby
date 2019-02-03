@@ -11,10 +11,16 @@ class Song
                 :year,
                 :album,
                 :tuning,
-                :sections
+                :sections,
+                :custom
 
   def initialize
     @sections = []
+    @custom = {}
+  end
+
+  def set_custom(key, value)
+    @custom[key.to_sym] = value
   end
 
   def to_html

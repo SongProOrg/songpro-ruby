@@ -9,6 +9,7 @@ require 'song_pro/part'
 module SongPro
   SECTION_REGEX = /#\s*([^$]*)/
   ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
+  CUSTOM_ATTRIBUTE_REGEX = /!(\w*)=([^%]*)/
   CHORDS_AND_LYRICS_REGEX = /(\[[\w#b\/]+\])?([\w\s',.!\(\)_\-"]*)/i
 
   def self.parse(lines)
@@ -18,6 +19,8 @@ module SongPro
     lines.split("\n").each do |text|
       if text.start_with?('@')
         process_attribute(song, text)
+      elsif text.start_with?('!')
+        process_custom_attribute(song, text)
       elsif text.start_with?('#')
         current_section = process_section(song, text)
       else
@@ -48,6 +51,15 @@ module SongPro
       puts "WARNING: Unknown attribute '#{key}'"
     end
   end
+
+  def self.process_custom_attribute(song, text)
+    matches = CUSTOM_ATTRIBUTE_REGEX.match(text)
+    key = matches[1]
+    value = matches[2].strip
+
+    song.set_custom(key, value)
+  end
+
 
   def self.process_lyrics_and_chords(song, current_section, text)
     return if text == ''

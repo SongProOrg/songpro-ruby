@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 RSpec.describe SongPro do
+  context 'custom attributes' do
+    it 'parses custom attributes' do
+      song = SongPro.parse('
+!difficulty=Easy
+!spotify_url=https://open.spotify.com/track/5zADxJhJEzuOstzcUtXlXv?si=SN6U1oveQ7KNfhtD2NHf9A
+')
+
+      expect(song.custom[:difficulty]).to eq('Easy')
+      expect(song.custom[:spotify_url]).to eq('https://open.spotify.com/track/5zADxJhJEzuOstzcUtXlXv?si=SN6U1oveQ7KNfhtD2NHf9A')
+    end
+  end
+
   context 'attributes' do
     it 'parses attributes' do
       song = SongPro.parse('
@@ -127,6 +139,8 @@ RSpec.describe SongPro do
       expect(song.artist).to eq 'Creedence Clearwater Revival'
       expect(song.capo).to eq '1'
       expect(song.sections.size).to eq 9
+      expect(song.custom[:difficulty]).to eq 'Easy'
+      expect(song.custom[:spotify_url]).to eq 'https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA'
     end
   end
 end
