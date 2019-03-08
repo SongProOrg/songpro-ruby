@@ -1,4 +1,4 @@
-RSpec.describe Song do
+RSpec.describe SongPro::Song do
   context '#to_html' do
     it 'generates divs' do
       infile = File.read('spec/fixtures/bad-moon-rising.sng')

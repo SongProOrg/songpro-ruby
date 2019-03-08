@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
-class Part
-  attr_accessor :lyric, :chord
+module SongPro
+  class Part
+    attr_accessor :lyric, :chord
+  end
 end
