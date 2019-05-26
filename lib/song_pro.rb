@@ -5,12 +5,15 @@ require 'song_pro/song'
 require 'song_pro/section'
 require 'song_pro/line'
 require 'song_pro/part'
+require 'song_pro/measure'
 
 module SongPro
   SECTION_REGEX = /#\s*([^$]*)/
   ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
   CUSTOM_ATTRIBUTE_REGEX = /!(\w*)=([^%]*)/
-  CHORDS_AND_LYRICS_REGEX = /(\[[\w#b\/]+\])?([\w\s',.!\(\)_\-"]*)/i
+  CHORDS_AND_LYRICS_REGEX = %r{(\[[\w#b\/]+\])?([\w\s',.!()_\-"]*)}i
+  MEASURES_REGEX = %r{([\[[\w#b\/]+\]\s]+)[|]*}i
+  CHORDS_REGEX = %r{\[([\w#b\/]+)\]?}i
 
   def self.parse(lines)
     song = Song.new
@@ -60,7 +63,6 @@ module SongPro
     song.set_custom(key, value)
   end
 
-
   def self.process_lyrics_and_chords(song, current_section, text)
     return if text == ''
 
@@ -71,16 +73,29 @@ module SongPro
 
     line = Line.new
 
-    if text.start_with?('|')
+    if text.start_with?('|-')
       line.tablature = text
+    elsif text.start_with?('| ')
+      captures = text.scan(MEASURES_REGEX).flatten
+
+      measures = []
+
+      captures.each do |capture|
+        chords = capture.scan(CHORDS_REGEX).flatten
+        measure = Measure.new
+        measure.chords = chords
+        measures << measure
+      end
+
+      line.measures = measures
     else
       captures = text.scan(CHORDS_AND_LYRICS_REGEX).flatten
 
-    captures.each_slice(2) do |pair|
-      part = Part.new
-      chord = pair[0]&.strip || ''
-      part.chord = chord.delete('[').delete(']')
-      part.lyric = pair[1]&.strip || ''
+      captures.each_slice(2) do |pair|
+        part = Part.new
+        chord = pair[0]&.strip || ''
+        part.chord = chord.delete('[').delete(']')
+        part.lyric = pair[1]&.strip || ''
 
         line.parts << part unless (part.chord == '') && (part.lyric == '')
       end

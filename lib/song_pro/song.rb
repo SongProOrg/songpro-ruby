@@ -66,6 +66,16 @@ module SongPro
                   div.tablature do
                     line.tablature
                   end
+                elsif line.measures?
+                  div.measures do
+                    line.measures.each do |measure|
+                      div.measure do
+                        measure.chords.each do |chord|
+                          div.chord chord
+                        end
+                      end
+                    end
+                  end
                 else
                   div.line do
                     line.parts.each do |part|

@@ -115,6 +115,23 @@ RSpec.describe SongPro do
     end
   end
 
+  context 'measures' do
+    it 'parses chord-only measures' do
+      song = SongPro.parse('
+# Instrumental
+
+| [A] [B] | [C] | [D] [E] [F] [G] |
+')
+
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines[0].measures?).to eq true
+      expect(song.sections[0].lines[0].measures.length).to eq 3
+      expect(song.sections[0].lines[0].measures[0].chords).to eq %w[A B]
+      expect(song.sections[0].lines[0].measures[1].chords).to eq %w[C]
+      expect(song.sections[0].lines[0].measures[2].chords).to eq %w[D E F G]
+    end
+  end
+
   context 'tablature' do
     it 'parses tablature' do
       song = SongPro.parse('
