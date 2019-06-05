@@ -24,6 +24,18 @@ module SongPro
       @custom[key.to_sym] = value
     end
 
+    def chords
+      sections.collect do |section|
+        section.lines.collect do |line|
+          if line.measures?
+            line.measures.collect(&:chords)
+          else
+            line.parts.collect(&:chord)
+          end
+        end
+      end.flatten.uniq.reject(&:empty?)
+    end
+
     def to_html
       mab = Markaby::Builder.new(song: self)
       mab.div.song do
