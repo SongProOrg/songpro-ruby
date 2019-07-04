@@ -148,6 +148,20 @@ RSpec.describe SongPro do
     end
   end
 
+  context 'comments' do
+    it 'parses comments' do
+      song = SongPro.parse('
+# Comment
+
+> This is a comment.
+')
+
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines[0].comment?).to eq true
+      expect(song.sections[0].lines[0].comment).to eq 'This is a comment.'
+    end
+  end
+
   context 'full song' do
     it 'parses the whole song' do
       bmr = File.read('spec/fixtures/bad-moon-rising.sng')

@@ -2,21 +2,25 @@
 
 module SongPro
   class Line
-    attr_accessor :parts, :tablature, :measures
+    attr_accessor :parts, :tablature, :measures, :comment
 
     def initialize
       @parts = []
       @tablature = nil
       @measures = nil
+      @comment = nil
     end
 
     def tablature?
-      return @tablature != nil
+      !@tablature.nil?
     end
 
     def measures?
-      return @measures != nil
+      !@measures.nil?
     end
 
+    def comment?
+      !@comment.nil?
+    end
   end
 end

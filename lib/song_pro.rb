@@ -14,6 +14,7 @@ module SongPro
   CHORDS_AND_LYRICS_REGEX = %r{(\[[\w#b\/]+\])?([\w\s',.!()_\-"]*)}i
   MEASURES_REGEX = %r{([\[[\w#b\/]+\]\s]+)[|]*}i
   CHORDS_REGEX = %r{\[([\w#b\/]+)\]?}i
+  COMMENT_REGEX = />\s*([^$]*)/
 
   def self.parse(lines)
     song = Song.new
@@ -88,6 +89,10 @@ module SongPro
       end
 
       line.measures = measures
+    elsif text.start_with?('>')
+      matches = COMMENT_REGEX.match(text)
+      comment = matches[1].strip
+      line.comment = comment
     else
       captures = text.scan(CHORDS_AND_LYRICS_REGEX).flatten
 
