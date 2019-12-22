@@ -74,6 +74,15 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines[0].parts.size).to eq 1
       expect(song.sections[0].lines[0].parts[0].lyric).to eq 'singing something (something else)'
     end
+
+    it 'handles special characters' do
+      song = SongPro.parse('singing sömething with Röck dots')
+
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines.size).to eq 1
+      expect(song.sections[0].lines[0].parts.size).to eq 1
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq 'singing sömething with Röck dots'
+    end
   end
 
   context 'chords' do
