@@ -101,7 +101,7 @@ module SongPro
         part = Part.new
         chord = pair[0]&.strip || ''
         part.chord = chord.delete('[').delete(']')
-        part.lyric = pair[1]&.strip || ''
+        part.lyric = pair[1] || ''
 
         line.parts << part unless (part.chord == '') && (part.lyric == '')
       end

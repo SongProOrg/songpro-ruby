@@ -92,11 +92,11 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines.size).to eq 1
       expect(song.sections[0].lines[0].parts.size).to eq 4
       expect(song.sections[0].lines[0].parts[0].chord).to eq 'D'
-      expect(song.sections[0].lines[0].parts[0].lyric).to eq ''
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq ' '
       expect(song.sections[0].lines[0].parts[1].chord).to eq 'D/F#'
-      expect(song.sections[0].lines[0].parts[1].lyric).to eq ''
+      expect(song.sections[0].lines[0].parts[1].lyric).to eq ' '
       expect(song.sections[0].lines[0].parts[2].chord).to eq 'C'
-      expect(song.sections[0].lines[0].parts[2].lyric).to eq ''
+      expect(song.sections[0].lines[0].parts[2].lyric).to eq ' '
       expect(song.sections[0].lines[0].parts[3].chord).to eq 'A7'
       expect(song.sections[0].lines[0].parts[3].lyric).to eq ''
     end
@@ -118,9 +118,22 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines.size).to eq 1
       expect(song.sections[0].lines[0].parts.size).to eq 2
       expect(song.sections[0].lines[0].parts[0].chord).to eq ''
-      expect(song.sections[0].lines[0].parts[0].lyric).to eq "It's"
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq "It's "
       expect(song.sections[0].lines[0].parts[1].chord).to eq 'D'
       expect(song.sections[0].lines[0].parts[1].lyric).to eq 'bound to take your life'
+    end
+
+    it 'parses lyrics before chords' do
+      song = SongPro.parse("It's a[D]bout a [E]boy")
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines.size).to eq 1
+      expect(song.sections[0].lines[0].parts.size).to eq 3
+      expect(song.sections[0].lines[0].parts[0].chord).to eq ''
+      expect(song.sections[0].lines[0].parts[0].lyric).to eq "It's a"
+      expect(song.sections[0].lines[0].parts[1].chord).to eq 'D'
+      expect(song.sections[0].lines[0].parts[1].lyric).to eq 'bout a '
+      expect(song.sections[0].lines[0].parts[2].chord).to eq 'E'
+      expect(song.sections[0].lines[0].parts[2].lyric).to eq 'boy'
     end
   end
 
