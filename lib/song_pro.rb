@@ -11,7 +11,8 @@ module SongPro
   SECTION_REGEX = /#\s*([^$]*)/
   ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
   CUSTOM_ATTRIBUTE_REGEX = /!(\w*)=([^%]*)/
-  CHORDS_AND_LYRICS_REGEX = %r{(\[[\w#b\/]+\])?([\w\s',.!()_\-"]*)}i
+  CHORDS_AND_LYRICS_REGEX = %r{(\[[\w#b\/]+\])?([^\[]*)}i
+
   MEASURES_REGEX = %r{([\[[\w#b\/]+\]\s]+)[|]*}i
   CHORDS_REGEX = %r{\[([\w#b\/]+)\]?}i
   COMMENT_REGEX = />\s*([^$]*)/
