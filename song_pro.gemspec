@@ -8,15 +8,13 @@ Gem::Specification.new do |spec|
   spec.name          = 'song_pro'
   spec.version       = SongPro::VERSION
   spec.authors       = ['Brian Kelly']
-  spec.email         = ['polymonic@gmail.com  ']
+  spec.email         = ['polymonic@gmail.com']
 
   spec.summary       = 'Converts SongPro files to HTML'
   spec.description   = 'Provides classes for creating, parsing and rendering SongPro files'
   spec.homepage      = 'https://songpro.org'
   spec.license       = 'MIT'
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   else
@@ -35,5 +33,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop'
 end

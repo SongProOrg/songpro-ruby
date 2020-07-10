@@ -14,30 +14,36 @@ gem 'song_pro'
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install song_pro
+```bash
+$ gem install song_pro
+```
 
 ## Usage
 
-Given then file `bad-moon-rising.sng` with the following contents:
+Given then file `escape-capsule.sng` with the following contents:
 
 ```
-@title=Bad Moon Rising
-@artist=Cleedence Clearwater Revival
-
-# Intro
-
-[D][A][G][D]
+@title=Escape Capsule
+@artist=Brian Kelly
+!bandcamp=https://spilth.bandcamp.com/track/escape-capsule-nashville-edition
 
 # Verse 1
 
-[D]I see a [A]bad [G]moon a-[D]rising
-[D]I see [A]trouble [G]on the [D]way
-[D]I see [A]earth-[G]quakes and [D]lightnin'
-[D]I see [A]bad [G]times to-[D]day
+Climb a-[D]board [A]
+I've been [Bm]waiting for you [F#m]
+Climb a-[G]board [D]
+You'll be [Asus4]safe in [A7]here
+
+# Chorus 1
+
+[G] I'm a [D]rocket [F#]made for your pro-[Bm]tection
+You're [G]safe with me, un-[A]til you leave
 ```
 
 You can then parse the file to create a `Song` object:
@@ -45,18 +51,17 @@ You can then parse the file to create a `Song` object:
 ```ruby
 require 'song_pro'
 
-text = File.read('bad-moon-rising.sng')
+text = File.read('escape-capsule.sng')
 song = SongPro.parse(text)
 
 puts song.title
-# Bad Moon Rising
+# Escape Capsule
 
 puts song.artist
-# Creedence Clearwater Revival 
+# Brian Kelly
 
 puts song.sections[1].title
-# Verse 1
-
+# Chorus 1
 ```
 
 ## Development
