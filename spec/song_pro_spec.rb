@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 RSpec.describe SongPro do
   context 'custom attributes' do
     it 'parses custom attributes' do
@@ -194,6 +196,16 @@ RSpec.describe SongPro do
       expect(song.sections.size).to eq 9
       expect(song.custom[:difficulty]).to eq 'Easy'
       expect(song.custom[:spotify_url]).to eq 'https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA'
+    end
+
+    it 'generates the correct json' do
+      bmr = File.read('spec/fixtures/bad-moon-rising.sng')
+      song = SongPro.parse(bmr)
+
+      actual_json = song.to_json
+      expected_json = File.read('spec/fixtures/bad-moon-rising.json')
+
+      expect(JSON.parse(actual_json)).to eq(JSON.parse(expected_json))
     end
   end
 end

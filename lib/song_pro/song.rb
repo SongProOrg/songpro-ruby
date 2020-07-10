@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'markaby'
+require 'json'
 
 module SongPro
   class Song
@@ -12,8 +13,8 @@ module SongPro
                   :year,
                   :album,
                   :tuning,
-                  :sections,
-                  :custom
+                  :custom,
+                  :sections
 
     def initialize
       @sections = []
@@ -22,6 +23,25 @@ module SongPro
 
     def set_custom(key, value)
       @custom[key.to_sym] = value
+    end
+
+    def as_json(options={})
+      {
+          title: @title,
+          artist: @artist,
+          capo: @capo,
+          key: @key,
+          tempo: @tempo,
+          year: @year,
+          album: @album,
+          tuning: @tuning,
+          custom: @custom,
+          sections: @sections
+      }.delete_if { |k, v| v.nil? }
+    end
+
+    def to_json(*options)
+      as_json(*options).to_json(*options)
     end
 
     def chords

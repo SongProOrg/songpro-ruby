@@ -13,7 +13,7 @@ Some [D] chord [A]
       expect(song.chords).to eq(%w[D A B C])
     end
   end
-
+  
   context '#to_html' do
     it 'generates divs' do
       infile = File.read('spec/fixtures/bad-moon-rising.sng')
