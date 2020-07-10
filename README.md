@@ -1,4 +1,4 @@
-# SongPro for Ruby [![Build Status](https://travis-ci.com/SongProOrg/songpro-ruby.svg?branch=master)](https://travis-ci.com/SongProOrg/songpro-ruby)
+# SongPro for Ruby ![Build](https://github.com/SongProOrg/songpro-ruby/workflows/Build/badge.svg?branch=master)
 
 [SongPro](https://songpro.org) is a text format for transcribing songs.
  
