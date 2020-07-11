@@ -25,7 +25,7 @@ module SongPro
 
     def as_json(options={})
       {
-          part: @parts,
+          parts: @parts,
           tablature: @tablature,
           measures: @measures,
           comment: @comment

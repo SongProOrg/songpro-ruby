@@ -11,7 +11,7 @@
       "name": "Intro",
       "lines": [
         {
-          "part": [],
+          "parts": [],
           "measures": [
             {
               "chords": [
@@ -42,7 +42,7 @@
       "name": "Verse 1",
       "lines": [
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I see a ",
               "chord": "D"
@@ -62,7 +62,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I see ",
               "chord": "D"
@@ -82,7 +82,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I see ",
               "chord": "D"
@@ -102,7 +102,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I see ",
               "chord": "D"
@@ -127,11 +127,11 @@
       "name": "Riff",
       "lines": [
         {
-          "part": [],
+          "parts": [],
           "tablature": "|-3---5-|"
         },
         {
-          "part": [],
+          "parts": [],
           "tablature": "|---4---|"
         }
       ]
@@ -140,7 +140,7 @@
       "name": "Chorus",
       "lines": [
         {
-          "part": [
+          "parts": [
             {
               "lyric": "Don't go 'round tonight",
               "chord": "G"
@@ -148,7 +148,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "It's ",
               "chord": ""
@@ -160,7 +160,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "There's a ",
               "chord": "A7"
@@ -181,7 +181,7 @@
       "name": "Verse 2",
       "lines": [
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I hear ",
               "chord": "D"
@@ -201,7 +201,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I know the ",
               "chord": "D"
@@ -221,7 +221,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I fear ",
               "chord": "D"
@@ -241,7 +241,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I hear the ",
               "chord": "D"
@@ -266,7 +266,7 @@
       "name": "Chorus",
       "lines": [
         {
-          "part": [
+          "parts": [
             {
               "lyric": "Don't go 'round tonight",
               "chord": "G"
@@ -274,7 +274,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "It's ",
               "chord": ""
@@ -286,7 +286,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "There's a ",
               "chord": "A7"
@@ -307,7 +307,7 @@
       "name": "Solo",
       "lines": [
         {
-          "part": [],
+          "parts": [],
           "measures": [
             {
               "chords": [
@@ -333,7 +333,7 @@
           ]
         },
         {
-          "part": [],
+          "parts": [],
           "measures": [
             {
               "chords": [
@@ -359,7 +359,7 @@
           ]
         },
         {
-          "part": [],
+          "parts": [],
           "measures": [
             {
               "chords": [
@@ -384,7 +384,7 @@
           ]
         },
         {
-          "part": [],
+          "parts": [],
           "measures": [
             {
               "chords": [
@@ -414,7 +414,7 @@
       "name": "Verse 3",
       "lines": [
         {
-          "part": [
+          "parts": [
             {
               "lyric": "I hope you ",
               "chord": "D"
@@ -434,7 +434,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "Hope you are ",
               "chord": "D"
@@ -454,7 +454,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "Look's like we're ",
               "chord": "D"
@@ -474,7 +474,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "One eye is ",
               "chord": "D"
@@ -499,7 +499,7 @@
       "name": "Chorus",
       "lines": [
         {
-          "part": [
+          "parts": [
             {
               "lyric": "Oh ",
               "chord": ""
@@ -511,7 +511,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "It's ",
               "chord": ""
@@ -523,7 +523,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "There's a ",
               "chord": "A7"
@@ -539,7 +539,7 @@
           ]
         },
         {
-          "part": [
+          "parts": [
             {
               "lyric": "There's a ",
               "chord": "A7"
