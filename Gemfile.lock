@@ -30,9 +30,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2.1.2)
+  bundler (~> 2.1.4)
   rake (~> 13.0)
-  rspec (~> 3.0)
+  rspec (~> 3.8)
   song_pro!
 
 BUNDLED WITH
