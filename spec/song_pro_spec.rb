@@ -143,9 +143,14 @@ RSpec.describe SongPro do
 # Instrumental
 
 | [G+] |
+
+# Lyrics
+
+[G+]This is a G Augmented chord
 ')
 
       expect(song.sections[0].lines[0].measures[0].chords).to eq %w[G+]
+      expect(song.sections[1].lines[0].parts[0].chord).to eq 'G+'
     end
   end
 
