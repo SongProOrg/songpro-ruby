@@ -137,6 +137,18 @@ RSpec.describe SongPro do
     end
   end
 
+  context 'chords' do
+    it 'recognizes augmented chords' do
+      song = SongPro.parse('
+# Instrumental
+
+| [G+] |
+')
+
+      expect(song.sections[0].lines[0].measures[0].chords).to eq %w[G+]
+    end
+  end
+
   context 'measures' do
     it 'parses chord-only measures' do
       song = SongPro.parse('
