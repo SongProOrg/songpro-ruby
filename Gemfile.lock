@@ -1,17 +1,24 @@
 PATH
   remote: .
   specs:
-    song_pro (0.1.9)
+    song_pro (0.1.10)
       markaby
 
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.4.2)
     builder (3.2.4)
     diff-lcs (1.4.4)
     markaby (0.9.0)
       builder
+    parallel (1.20.1)
+    parser (3.0.1.1)
+      ast (~> 2.4.1)
+    rainbow (3.0.0)
     rake (13.0.3)
+    regexp_parser (2.1.1)
+    rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -25,6 +32,27 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
+    rubocop (1.18.2)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.7.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.7.0)
+      parser (>= 3.0.1.1)
+    rubocop-performance (1.11.3)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    ruby-progressbar (1.11.0)
+    standard (1.1.4)
+      rubocop (= 1.18.2)
+      rubocop-performance (= 1.11.3)
+    standardrb (1.0.0)
+      standard
+    unicode-display_width (2.0.0)
 
 PLATFORMS
   ruby
@@ -34,6 +62,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.8)
   song_pro!
+  standardrb
 
 BUNDLED WITH
    2.2.21

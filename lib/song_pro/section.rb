@@ -4,7 +4,7 @@ module SongPro
   class Section
     attr_accessor :name, :lines
 
-    def initialize(name: '')
+    def initialize(name: "")
       @name = name
       @lines = []
     end

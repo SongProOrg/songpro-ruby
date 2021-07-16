@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require 'song_pro/version'
-require 'song_pro/song'
-require 'song_pro/section'
-require 'song_pro/line'
-require 'song_pro/part'
-require 'song_pro/measure'
+require "song_pro/version"
+require "song_pro/song"
+require "song_pro/section"
+require "song_pro/line"
+require "song_pro/part"
+require "song_pro/measure"
 
 module SongPro
   SECTION_REGEX = /#\s*([^$]*)/
   ATTRIBUTE_REGEX = /@(\w*)=([^%]*)/
   CUSTOM_ATTRIBUTE_REGEX = /!(\w*)=([^%]*)/
-  CHORDS_AND_LYRICS_REGEX = %r{(\[[\w#b+\/]+\])?([^\[]*)}i
+  CHORDS_AND_LYRICS_REGEX = %r{(\[[\w#b+/]+\])?([^\[]*)}i
 
-  MEASURES_REGEX = %r{([\[[\w#b\/]+\]\s]+)[|]*}i
-  CHORDS_REGEX = %r{\[([\w#b+\/]+)\]?}i
+  MEASURES_REGEX = %r{([\[[\w#b/]+\]\s]+)[|]*}i
+  CHORDS_REGEX = %r{\[([\w#b+/]+)\]?}i
   COMMENT_REGEX = />\s*([^$]*)/
 
   def self.parse(lines)
@@ -22,11 +22,11 @@ module SongPro
     current_section = nil
 
     lines.split("\n").each do |text|
-      if text.start_with?('@')
+      if text.start_with?("@")
         process_attribute(song, text)
-      elsif text.start_with?('!')
+      elsif text.start_with?("!")
         process_custom_attribute(song, text)
-      elsif text.start_with?('#')
+      elsif text.start_with?("#")
         current_section = process_section(song, text)
       else
         process_lyrics_and_chords(song, current_section, text)
@@ -66,18 +66,18 @@ module SongPro
   end
 
   def self.process_lyrics_and_chords(song, current_section, text)
-    return if text == ''
+    return if text == ""
 
     if current_section.nil?
-      current_section = Section.new(name: '')
+      current_section = Section.new(name: "")
       song.sections << current_section
     end
 
     line = Line.new
 
-    if text.start_with?('|-')
+    if text.start_with?("|-")
       line.tablature = text
-    elsif text.start_with?('| ')
+    elsif text.start_with?("| ")
       captures = text.scan(MEASURES_REGEX).flatten
 
       measures = []
@@ -90,7 +90,7 @@ module SongPro
       end
 
       line.measures = measures
-    elsif text.start_with?('>')
+    elsif text.start_with?(">")
       matches = COMMENT_REGEX.match(text)
       comment = matches[1].strip
       line.comment = comment
@@ -99,11 +99,11 @@ module SongPro
 
       captures.each_slice(2) do |pair|
         part = Part.new
-        chord = pair[0]&.strip || ''
-        part.chord = chord.delete('[').delete(']')
-        part.lyric = pair[1] || ''
+        chord = pair[0]&.strip || ""
+        part.chord = chord.delete("[").delete("]")
+        part.lyric = pair[1] || ""
 
-        line.parts << part unless (part.chord == '') && (part.lyric == '')
+        line.parts << part unless (part.chord == "") && (part.lyric == "")
       end
     end
 

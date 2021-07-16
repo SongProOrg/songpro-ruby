@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require 'markaby'
+require "markaby"
 
 module SongPro
   class Song
     attr_accessor :title,
-                  :artist,
-                  :capo,
-                  :key,
-                  :tempo,
-                  :year,
-                  :album,
-                  :tuning,
-                  :sections,
-                  :custom
+      :artist,
+      :capo,
+      :key,
+      :tempo,
+      :year,
+      :album,
+      :tuning,
+      :sections,
+      :custom
 
     def initialize
       @sections = []
@@ -44,27 +44,27 @@ module SongPro
 
         dl.information do
           if song.tuning
-            dt.tuning 'Tuning'
+            dt.tuning "Tuning"
             dd.tuning song.tuning
           end
           if song.capo
-            dt.capo 'Capo'
+            dt.capo "Capo"
             dd.capo song.capo
           end
           if song.key
-            dt.key 'Key'
+            dt.key "Key"
             dd.key song.key
           end
           if song.tempo
-            dt.tempo 'Tempo'
+            dt.tempo "Tempo"
             dd.tempo song.tempo
           end
           if song.year
-            dt.year 'Year'
+            dt.year "Year"
             dd.year song.year
           end
           if song.album
-            dt.album 'Album'
+            dt.album "Album"
             dd.album song.album
           end
         end
