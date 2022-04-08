@@ -60,8 +60,11 @@ puts song.title
 puts song.artist
 # Brian Kelly
 
-puts song.sections[1].title
+puts song.sections[1].name
 # Chorus 1
+
+p song.chords
+# ["D", "A", "Bm", "F#m", "G", "Asus4", "A7", "F#"]
 ```
 
 ## Development
