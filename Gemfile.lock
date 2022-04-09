@@ -28,11 +28,11 @@ GEM
     rspec-expectations (3.11.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
-    rspec-mocks (3.11.0)
+    rspec-mocks (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)
-    rubocop (1.26.0)
+    rubocop (1.26.1)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -47,8 +47,8 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
-    standard (1.9.0)
-      rubocop (= 1.26.0)
+    standard (1.9.1)
+      rubocop (= 1.26.1)
       rubocop-performance (= 1.13.3)
     standardrb (1.0.1)
       standard
@@ -65,4 +65,4 @@ DEPENDENCIES
   standardrb
 
 BUNDLED WITH
-   2.3.10
+   2.3.11
