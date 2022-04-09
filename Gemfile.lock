@@ -1,17 +1,13 @@
 PATH
   remote: .
   specs:
-    song_pro (0.1.10)
-      markaby
+    song_pro (0.1.11)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
-    builder (3.2.4)
     diff-lcs (1.5.0)
-    markaby (0.9.0)
-      builder
     parallel (1.22.1)
     parser (3.1.1.0)
       ast (~> 2.4.1)
