@@ -200,17 +200,4 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines[0].comment).to eq "This is a comment."
     end
   end
-
-  context "full song" do
-    it "parses the whole song" do
-      bmr = File.read("spec/fixtures/bad-moon-rising.sng")
-      song = SongPro.parse(bmr)
-      expect(song.title).to eq "Bad Moon Rising"
-      expect(song.artist).to eq "Creedence Clearwater Revival"
-      expect(song.capo).to eq "1"
-      expect(song.sections.size).to eq 9
-      expect(song.custom[:difficulty]).to eq "Easy"
-      expect(song.custom[:spotify_url]).to eq "https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA"
-    end
-  end
 end
