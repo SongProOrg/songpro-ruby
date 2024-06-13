@@ -50,8 +50,8 @@ module SongPro
     key = matches[1]
     value = matches[2].strip
 
-    if song.respond_to?("#{key}=".to_sym)
-      song.send("#{key}=", value)
+    if song.respond_to?(:"#{key}=")
+      song.send(:"#{key}=", value)
     else
       puts "WARNING: Unknown attribute '#{key}'"
     end
