@@ -66,7 +66,7 @@ RSpec.describe SongPro do
       expect(song.sections[0].lines[0].parts[0].lyric).to eq "I don't see! a bad, moon a-rising. (a-rising)"
     end
 
-    it "handles parens in lyics" do
+    it "handles parens in lyrics" do
       song = SongPro.parse("singing something (something else)")
 
       expect(song.sections.size).to eq 1
@@ -176,14 +176,31 @@ RSpec.describe SongPro do
       song = SongPro.parse('
 # Riff
 
-|-3---5-|
-|---4---|
+|-3---5-|e
+|---4---|B
 ')
       expect(song.sections.size).to eq 1
       expect(song.sections[0].lines[0].tablature?).to eq true
-      expect(song.sections[0].lines[0].tablature).to eq "|-3---5-|"
+      expect(song.sections[0].lines[0].tablature).to eq "|-3---5-|e"
       expect(song.sections[0].lines[1].tablature?).to eq true
-      expect(song.sections[0].lines[1].tablature).to eq "|---4---|"
+      expect(song.sections[0].lines[1].tablature).to eq "|---4---|B"
+    end
+
+    it "parses alternate tablature format" do
+      song = SongPro.parse('
+# Riff
+
+ e|-3---5-|
+B#|---4---|
+Ab|-3-4-5-|
+')
+      expect(song.sections.size).to eq 1
+      expect(song.sections[0].lines[0].tablature?).to eq true
+      expect(song.sections[0].lines[0].tablature).to eq " e|-3---5-|"
+      expect(song.sections[0].lines[1].tablature?).to eq true
+      expect(song.sections[0].lines[1].tablature).to eq "B#|---4---|"
+      expect(song.sections[0].lines[2].tablature?).to eq true
+      expect(song.sections[0].lines[2].tablature).to eq "Ab|-3-4-5-|"
     end
   end
 
