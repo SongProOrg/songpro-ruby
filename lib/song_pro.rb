@@ -16,6 +16,7 @@ module SongPro
   MEASURES_REGEX = %r{([\[[\w#b/]+\]\s]+)[|]*}i
   CHORDS_REGEX = %r{\[([\w#b+/]+)\]?}i
   COMMENT_REGEX = />\s*([^$]*)/
+  TABLATURE_REGEX = /^\s?[a-zA-Z]?#?b?\|-/
 
   def self.parse(lines)
     song = Song.new
@@ -75,7 +76,7 @@ module SongPro
 
     line = Line.new
 
-    if text.start_with?("|-")
+    if text.match(TABLATURE_REGEX)
       line.tablature = text
     elsif text.start_with?("| ")
       captures = text.scan(MEASURES_REGEX).flatten
